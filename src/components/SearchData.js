@@ -17,7 +17,7 @@ const searchData = {
       name: "kajal",
       price: "450",
       customerReviews: "4",
-      brand: "collossal-kajal"
+      brand: "collossal"
     },
     {
       name: "Lipstic",
@@ -69,7 +69,7 @@ const searchData = {
       name: "kurta",
       price: "600",
       customerReviews: "4",
-      brand: "aurolie"
+      brand: "w brand"
     },
     {
       name: "jeans",
@@ -93,7 +93,7 @@ const searchData = {
     },
     {
       name: "fridge",
-      price: "15000",
+      price: "16000",
       customerReviews: "4",
       brand: "lg"
     },

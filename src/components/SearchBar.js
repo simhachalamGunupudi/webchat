@@ -6,11 +6,55 @@ export default class SearchBar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      searchData: props.searchData
+      searchData: props.searchData,
+      searchResult: []
     };
   }
   onFormSubmit = formData => {
-    console.log("form data in sb", formData);
+    console.log("form data in sb", formData.category);
+    const search = formData.search;
+    let allData = [];
+    let updatedList = this.state.searchData;
+    console.log("updated list", updatedList);
+    // switch (formData.category) {
+    //   case "All":
+    //     for (var key in updatedList) {
+    //       if (key != "categories") {
+    //         allData = allData.concat(updatedList[key]);
+    //       }
+    //     }
+    //     allData = allData.filter(list => {
+    //       return list.name.toLowerCase().includes(search.toLowerCase());
+    //     });
+    //     this.setState({ searchResult: allData });
+    //     console.log("allData", allData);
+    //   default:
+    //     updatedList = updatedList[formData.category.toLowerCase()].filter(
+    //       list => {
+    //         return list.name.toLowerCase().includes(search.toLowerCase());
+    //       }
+    //     );
+    //     this.setState({ searchResult: updatedList });
+    // }
+    if (formData.category === "All") {
+      for (var key in updatedList) {
+        if (key != "categories") {
+          allData = allData.concat(updatedList[key]);
+        }
+      }
+      allData = allData.filter(list => {
+        return list.name.toLowerCase().includes(search.toLowerCase());
+      });
+      this.setState({ searchResult: allData });
+      console.log("allData", allData);
+    } else {
+      updatedList = updatedList[formData.category.toLowerCase()].filter(
+        list => {
+          return list.name.toLowerCase().includes(search.toLowerCase());
+        }
+      );
+      this.setState({ searchResult: updatedList });
+    }
   };
   render() {
     return (
@@ -19,7 +63,7 @@ export default class SearchBar extends Component {
           categories={this.state.searchData.categories}
           onFormSubmit={this.onFormSubmit}
         />
-        <SearchResults />
+        <SearchResults searchResult={this.state.searchResult} />
       </div>
     );
   }
